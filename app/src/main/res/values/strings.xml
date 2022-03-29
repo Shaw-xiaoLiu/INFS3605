@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">INFS3605</string>
+
+    <!-- Buttons -->
+    <string name="btn_login">Login</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_select_all_no">Select \'No\' for all questions</string>
+    <string name="btn_submit">Submit</string>
+
+    <string name="title_survey_name">COVID-19 Safety Survey</string>
+    <string name="title_error">Error</string>
+    <string name="title_welcome_user">Welcome %s</string>
+    <string name="title_survey_result">Survey Result</string>
+
+    <string name="menu_logout">Logout</string>
+
+    <string name="survey_question_1">1. Do you have any of the following symptoms now or within the last 14 days: Cough, smell/taste impairment, fever, breathing difficulties, body aches, headaches, fatigue, sore throat, diarrhoea, and / or runny nose (even if your symptoms are mild)?</string>
+    <string name="survey_question_2">2. Have you been in contact with anyone who is suspected to have or/has been diagnosed with Covid-19 within the last 14 days?</string>
+    <string name="survey_question_3">3. Have you been fully vaccinated?</string>
+
+    <string name="msg_fill_all_fields">Please fill out all required fields.</string>
+
 </resources>

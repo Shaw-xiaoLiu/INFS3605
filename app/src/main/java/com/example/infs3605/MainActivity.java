@@ -1,28 +1,94 @@
 package com.example.infs3605;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.infs3605.constants.FirestoreCollections;
+import com.example.infs3605.databinding.ActivityMainBinding;
+import com.example.infs3605.dto.SurveyItem;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this,SurveyActivity.class);
-                startActivity(intent);
-            }
-        });
+        binding.btnLogin.setOnClickListener(v -> launchLoginUI());
 
+        // hide Login button while checking auth
+        binding.btnLogin.setVisibility(View.GONE);
+        checkAuth();
+    }
+
+    private void launchLoginUI() {
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build();
+        signInLauncher.launch(signInIntent);
+    }
+
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(), result -> checkAuth()
+    );
+
+    private void checkAuth() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            checkWelcomeSurvey(user.getUid());
+        } else {
+            binding.btnLogin.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void checkWelcomeSurvey(String userId) {
+        FirebaseFirestore.getInstance()
+                .collection(FirestoreCollections.SURVEYS)
+                .document(userId)
+                .collection(FirestoreCollections.WELCOME_SURVEYS)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        ArrayList<SurveyItem> surveyItems = (ArrayList<SurveyItem>) task.getResult().toObjects(SurveyItem.class);
+                        launchHomeActivity(surveyItems);
+                    } else {
+                        launchSurveyActivity();
+                    }
+                });
+    }
+
+    private void launchHomeActivity(ArrayList<SurveyItem> surveyItems) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(HomeActivity.EXTRA_SURVEY_ITEMS, surveyItems);
+        startActivity(intent);
+        finish();
+    }
+
+    private void launchSurveyActivity() {
+        Intent intent = new Intent(this, SurveyActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
