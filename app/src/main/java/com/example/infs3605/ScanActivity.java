@@ -23,9 +23,9 @@ public class ScanActivity extends AppCompatActivity{
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 创建IntentIntegrator对象
+                // create IntentIntegrator
                 IntentIntegrator intentIntegrator = new IntentIntegrator(ScanActivity.this);
-                // 开始扫描
+                // start scanning
                 intentIntegrator.initiateScan();
             }
         });
@@ -33,7 +33,7 @@ public class ScanActivity extends AppCompatActivity{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // 获取解析结果
+        // get result
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
