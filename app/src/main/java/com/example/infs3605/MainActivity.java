@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchSurveyActivity() {
-        Intent intent = new Intent(this, SurveyActivity.class);
+        Intent intent = new Intent(this, ScanActivity.class);
         startActivity(intent);
         finish();
     }
