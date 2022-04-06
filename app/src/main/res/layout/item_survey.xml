@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/iv"
+        android:scaleType="centerCrop"
+        android:theme="@style/RoundedImage"
+        app:srcCompat="@drawable/survey_question_3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/survey_question_1"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+    <RadioGroup
+        android:id="@+id/rGroupQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/r_btn_question_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_yes" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/r_btn_question_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_no" />
+    </RadioGroup>
+</LinearLayout>

@@ -9,14 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.infs3605.constants.FirestoreCollections;
 import com.example.infs3605.databinding.ActivityMainBinding;
-import com.example.infs3605.dto.SurveyItem;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,17 +69,15 @@ public class MainActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        ArrayList<SurveyItem> surveyItems = (ArrayList<SurveyItem>) task.getResult().toObjects(SurveyItem.class);
-                        launchHomeActivity(surveyItems);
+                        launchHomeActivity();
                     } else {
                         launchSurveyActivity();
                     }
                 });
     }
 
-    private void launchHomeActivity(ArrayList<SurveyItem> surveyItems) {
+    private void launchHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra(HomeActivity.EXTRA_SURVEY_ITEMS, surveyItems);
         startActivity(intent);
         finish();
     }

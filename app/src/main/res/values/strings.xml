@@ -5,13 +5,22 @@
     <string name="btn_login">Login</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
-    <string name="btn_select_all_no">Select \'No\' for all questions</string>
+    <string name="btn_previous">Previous</string>
+    <string name="btn_next">Next</string>
     <string name="btn_submit">Submit</string>
+    <string name="btn_edit_profile">Edit profile</string>
+    <string name="btn_update">Update</string>
 
     <string name="title_survey_name">COVID-19 Safety Survey</string>
     <string name="title_error">Error</string>
     <string name="title_welcome_user">Welcome %s</string>
     <string name="title_survey_result">Survey Result</string>
+    <string name="title_email">Email</string>
+    <string name="title_phone">Phone</string>
+    <string name="title_address">Address</string>
+    <string name="title_gender">Gender</string>
+    <string name="title_age">Age</string>
+    <string name="title_name">Name</string>
 
     <string name="menu_logout">Logout</string>
 
@@ -20,5 +29,6 @@
     <string name="survey_question_3">3. Have you been fully vaccinated?</string>
 
     <string name="msg_fill_all_fields">Please fill out all required fields.</string>
+    <string name="msg_updating_info">Updating info …</string>
 
 </resources>
