@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         launchHomeActivity();
                     } else {
-                        launchSurveyActivity();
+                        launchScanActivity();
                     }
                 });
     }
