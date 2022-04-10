@@ -1,49 +1,46 @@
 package com.example.infs3605;
 
 
+import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;;
-import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CaptureActivity;
 
+public class ScanActivity extends AppCompatActivity {
 
-public class ScanActivity extends AppCompatActivity{
-    TextView code_result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-        code_result = (TextView) findViewById(R.id.code_result);
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // create IntentIntegrator
-                IntentIntegrator intentIntegrator = new IntentIntegrator(ScanActivity.this);
-                // start scanning
-                intentIntegrator.initiateScan();
+            public void onClick(View view) {
+                Intent intent = new Intent(ScanActivity.this, CaptureActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
             }
         });
-    }
+    };
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // get result
+        // 获取解析结果
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast toast=Toast.makeText(ScanActivity.this, "cancel scanning...", Toast.LENGTH_LONG);
-                toast.show();
+                Toast.makeText(this, "cancel scanning", Toast.LENGTH_LONG).show();
             } else {
-                Toast toast=Toast.makeText(ScanActivity.this, "content:" + result.getContents(), Toast.LENGTH_LONG);
-                toast.show();
-
-                code_result.setText(result.getContents());
+                Intent intent =new Intent(ScanActivity.this,WelcomeActivity.class);
+                intent.putExtra("location", result.getContents());
+                startActivity(intent);
+                finish();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
