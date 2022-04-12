@@ -23,12 +23,10 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent =getIntent();
         String msg=intent.getStringExtra("location");
         location.setText(msg);
-        findViewById(R.id.turn).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this, SurveyActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        findViewById(R.id.turn).setOnClickListener(view -> {
+            Intent intent1 = new Intent(WelcomeActivity.this, SurveyActivity.class);
+            startActivity(intent1);
+            finish();
         });
     }
 }

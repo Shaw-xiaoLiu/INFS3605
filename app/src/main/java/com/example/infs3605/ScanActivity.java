@@ -26,7 +26,7 @@ public class ScanActivity extends AppCompatActivity {
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
-    };
+    }
 
 
     @Override

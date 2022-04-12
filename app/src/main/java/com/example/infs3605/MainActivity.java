@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             checkWelcomeSurvey(user.getUid());
         } else {
             binding.btnLogin.setVisibility(View.VISIBLE);
+            binding.progress.setVisibility(View.GONE);
         }
     }
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 .collection(FirestoreCollections.WELCOME_SURVEYS)
                 .get()
                 .addOnCompleteListener(task -> {
+                    binding.progress.setVisibility(View.GONE);
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         launchHomeActivity();
                     } else {
@@ -82,11 +84,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    private void launchSurveyActivity() {
-        Intent intent = new Intent(this, SurveyActivity.class);
-        startActivity(intent);
-        finish();
-    }
     private void launchScanActivity() {
         Intent intent = new Intent(this, ScanActivity.class);
         startActivity(intent);

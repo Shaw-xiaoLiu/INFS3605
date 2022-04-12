@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INFS3605">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
@@ -34,9 +37,6 @@
             android:name=".EditProfileActivity"
             android:exported="false"
             android:label="@string/btn_edit_profile" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
         <activity
             android:name=".SurveyActivity"
             android:exported="false" />

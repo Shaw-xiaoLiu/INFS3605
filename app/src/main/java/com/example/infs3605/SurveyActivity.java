@@ -2,7 +2,6 @@ package com.example.infs3605;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.infs3605.adapters.SurveyAdapter;
 import com.example.infs3605.adapters.SurveyLayoutManager;
 import com.example.infs3605.constants.FirestoreCollections;
+import com.example.infs3605.constants.Surveys;
 import com.example.infs3605.databinding.ActivitySurveyBinding;
 import com.example.infs3605.dto.SurveyItem;
 import com.example.infs3605.dto.SurveyType;
@@ -29,8 +29,6 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
 
     private ActivitySurveyBinding binding;
     private String userId;
-    private final int[] surveyImages = {R.drawable.survey_question_1, R.drawable.survey_question_2, R.drawable.survey_question_3};
-    private final int[] surveyQuestions = {R.string.survey_question_1, R.string.survey_question_2, R.string.survey_question_3};
 
     private final HashMap<Integer, String> answers = new HashMap<>();
     private int currentQuestion = 0;
@@ -47,16 +45,12 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
         if (user == null) return;
         userId = user.getUid();
 
-        // Yes or No choices for each question
-        ArrayList<Pair<Integer, Integer>> choices = new ArrayList<>();
-        choices.add(new Pair<>(R.string.btn_yes, R.string.btn_no));
-        choices.add(new Pair<>(R.string.btn_yes, R.string.btn_no));
-        choices.add(new Pair<>(R.string.btn_yes, R.string.btn_no));
+
 
         layoutManager = new SurveyLayoutManager(this, SurveyLayoutManager.HORIZONTAL, false);
         binding.recycler.setLayoutManager(layoutManager);
 
-        SurveyAdapter adapter = new SurveyAdapter(this, surveyImages, surveyQuestions, choices, this);
+        SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), this);
         binding.recycler.setAdapter(adapter);
 
         binding.btnNext.setOnClickListener(v -> performNextAction());
@@ -72,8 +66,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
     }
 
     private void performNextAction() {
-        int questionCount = surveyQuestions.length;
-        if (questionCount == 0) return;
+        int questionCount = Surveys.surveyQuestions.length;
 
         if (answers.containsKey(currentQuestion)) {
             if (currentQuestion == questionCount - 1) {
@@ -96,9 +89,6 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
     }
 
     private void performPreviousAction() {
-        int questionCount = surveyQuestions.length;
-        if (questionCount == 0) return;
-
         if (currentQuestion == 1) {
             binding.btnPrevious.setEnabled(false);
         }
@@ -113,8 +103,8 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
     private void prepareForm() {
         ArrayList<SurveyItem> surveyItems = new ArrayList<>();
 
-        for (int i = 0; i < surveyQuestions.length; i++) {
-            String surveyQuestion = getString(surveyQuestions[i]);
+        for (int i = 0; i < Surveys.surveyQuestions.length; i++) {
+            String surveyQuestion = getString(Surveys.surveyQuestions[i]);
             String surveyAnswer = answers.get(i);
             SurveyItem surveyItem = new SurveyItem(SurveyType.MULTIPLE_CHOICE, surveyQuestion, surveyAnswer, null);
             surveyItems.add(surveyItem);
