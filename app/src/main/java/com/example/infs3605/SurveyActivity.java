@@ -131,7 +131,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
             binding.btnNext.setEnabled(true);
 
             if (task.isSuccessful()) {
-                Intent intent = new Intent(this, HomeActivity.class);
+                Intent intent = new Intent(this, SubmittedActivity.class);
                 startActivity(intent);
                 finish();
             } else {

@@ -14,9 +14,13 @@
         android:layout_marginTop="220dp"
         android:layout_marginEnd="167dp"
         android:layout_marginBottom="38dp"
+        android:fontFamily="@font/bad_script"
         android:text="Welcome to "
+        android:textColor="#1D39C6"
+        android:textSize="60sp"
         app:layout_constraintBottom_toTopOf="@+id/location"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +46,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="323dp"
-        android:text="Button"
+        android:text="Go to the survey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
