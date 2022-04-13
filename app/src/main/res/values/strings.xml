@@ -27,6 +27,7 @@
     <string name="title_settings">Settings</string>
 
     <string name="menu_logout">Logout</string>
+    <string name="menu_edit_result">Edit result</string>
 
     <string name="survey_question_1">1. Do you have any of the following symptoms now or within the last 14 days: Cough, smell/taste impairment, fever, breathing difficulties, body aches, headaches, fatigue, sore throat, diarrhoea, and / or runny nose (even if your symptoms are mild)?</string>
     <string name="survey_question_2">2. Have you been in contact with anyone who is suspected to have or/has been diagnosed with Covid-19 within the last 14 days?</string>

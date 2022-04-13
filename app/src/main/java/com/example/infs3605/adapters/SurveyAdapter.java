@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,14 +26,17 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.PlaceHolde
     @StringRes
     private final int[] surveyQuestions;
     private final ArrayList<Pair<Integer, Integer>> choices;
+    @Nullable
+    private final ArrayList<String> answers;
     private final OnAnswerCheckedListener onAnswerCheckedListener;
 
-    public SurveyAdapter(Context context, int[] surveyImages, int[] surveyQuestions, ArrayList<Pair<Integer, Integer>> choices, OnAnswerCheckedListener onAnswerCheckedListener) {
+    public SurveyAdapter(Context context, @DrawableRes int[] surveyImages, @StringRes int[] surveyQuestions, ArrayList<Pair<Integer, Integer>> choices, @Nullable ArrayList<String> answers, OnAnswerCheckedListener onAnswerCheckedListener) {
         this.context = context;
         this.surveyImages = surveyImages;
         this.surveyQuestions = surveyQuestions;
         this.choices = choices;
         this.onAnswerCheckedListener = onAnswerCheckedListener;
+        this.answers = answers;
     }
 
     @NonNull
@@ -49,6 +53,14 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.PlaceHolde
         Pair<Integer, Integer> choice = choices.get(position);
         holder.binding.rBtnQuestionFirst.setText(choice.first);
         holder.binding.rBtnQuestionSecond.setText(choice.second);
+
+        if (answers != null) {
+            if (answers.get(position).equals(context.getString(choice.first))) {
+                holder.binding.rBtnQuestionFirst.setChecked(true);
+            } else {
+                holder.binding.rBtnQuestionSecond.setChecked(true);
+            }
+        }
 
         holder.binding.rGroupQuestion.setOnCheckedChangeListener((group, checkedId) -> {
             String checkedAnswer = ((MaterialRadioButton) holder.binding.getRoot().findViewById(checkedId)).getText().toString();

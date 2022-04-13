@@ -2,6 +2,7 @@ package com.example.infs3605;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,20 +20,27 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.OnAnswerCheckedListener {
 
+    public static final String EXTRA_SURVEY_ITEMS = "EXTRA_SURVEY_ITEMS";
+    public static final String EXTRA_SURVEY_IDS = "EXTRA_SURVEY_IDS";
     private ActivitySurveyBinding binding;
     private String userId;
 
     private final HashMap<Integer, String> answers = new HashMap<>();
-    private int currentQuestion = 0;
+    private int currentQuestionIndex = 0;
     private SurveyLayoutManager layoutManager;
+
+    private ArrayList<String> surveyIds;
+    private boolean isUpdateForm = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +53,33 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
         if (user == null) return;
         userId = user.getUid();
 
-
-
         layoutManager = new SurveyLayoutManager(this, SurveyLayoutManager.HORIZONTAL, false);
         binding.recycler.setLayoutManager(layoutManager);
 
-        SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), this);
-        binding.recycler.setAdapter(adapter);
+        // check whether user create or update survey
+        Intent intent = getIntent();
+
+        if (intent != null && intent.hasExtra(EXTRA_SURVEY_ITEMS)) {
+            isUpdateForm = true;
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+            ArrayList<SurveyItem> surveyItems = intent.getParcelableArrayListExtra(EXTRA_SURVEY_ITEMS);
+            surveyIds = intent.getStringArrayListExtra(EXTRA_SURVEY_IDS);
+            ArrayList<String> userAnswers = new ArrayList<>();
+
+            for (int i = 0; i < surveyItems.size(); i++) {
+                String answer = surveyItems.get(i).getChoiceAnswer();
+                userAnswers.add(answer);
+                answers.put(i, answer);
+            }
+
+            SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), userAnswers, this);
+            binding.recycler.setAdapter(adapter);
+
+        } else {
+            SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), null, this);
+            binding.recycler.setAdapter(adapter);
+        }
 
         binding.btnNext.setOnClickListener(v -> performNextAction());
         binding.btnPrevious.setOnClickListener(v -> performPreviousAction());
@@ -68,15 +96,15 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
     private void performNextAction() {
         int questionCount = Surveys.surveyQuestions.length;
 
-        if (answers.containsKey(currentQuestion)) {
-            if (currentQuestion == questionCount - 1) {
+        if (answers.containsKey(currentQuestionIndex)) {
+            if (currentQuestionIndex == questionCount - 1) {
                 prepareForm();
-            } else if (currentQuestion == questionCount - 2) {
-                binding.btnNext.setText(R.string.btn_submit);
+            } else if (currentQuestionIndex == questionCount - 2) {
+                binding.btnNext.setText(isUpdateForm ? R.string.btn_update : R.string.btn_submit);
                 binding.btnNext.setIconResource(R.drawable.ic_baseline_send_24);
             }
 
-            if (currentQuestion < questionCount - 1) currentQuestion++;
+            if (currentQuestionIndex < questionCount - 1) currentQuestionIndex++;
             binding.btnPrevious.setEnabled(true);
         } else {
             Snackbar.make(binding.getRoot(), R.string.msg_fill_all_fields, 500)
@@ -85,19 +113,19 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
         }
 
         layoutManager.setScrollEnabled(true);
-        binding.recycler.smoothScrollToPosition(currentQuestion);
+        binding.recycler.smoothScrollToPosition(currentQuestionIndex);
     }
 
     private void performPreviousAction() {
-        if (currentQuestion == 1) {
+        if (currentQuestionIndex == 1) {
             binding.btnPrevious.setEnabled(false);
         }
 
-        currentQuestion--;
+        currentQuestionIndex--;
         binding.btnNext.setText(R.string.btn_next);
         binding.btnNext.setIconResource(R.drawable.ic_baseline_navigate_next_24);
         layoutManager.setScrollEnabled(true);
-        binding.recycler.smoothScrollToPosition(currentQuestion);
+        binding.recycler.smoothScrollToPosition(currentQuestionIndex);
     }
 
     private void prepareForm() {
@@ -123,16 +151,21 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
                 .document(userId)
                 .collection(FirestoreCollections.WELCOME_SURVEYS);
 
-        for (SurveyItem surveyItem : surveyItems) {
-            batch.set(ref.document(), surveyItem);
+        for (int i = 0; i < surveyItems.size(); i++) {
+            DocumentReference reference = isUpdateForm ? ref.document(surveyIds.get(i)) : ref.document();
+            batch.set(reference, surveyItems.get(i));
         }
 
         batch.commit().addOnCompleteListener(task -> {
             binding.btnNext.setEnabled(true);
 
             if (task.isSuccessful()) {
-                Intent intent = new Intent(this, SubmittedActivity.class);
-                startActivity(intent);
+                if (isUpdateForm) {
+                    setResult(RESULT_OK);
+                } else {
+                    Intent intent = new Intent(this, SubmittedActivity.class);
+                    startActivity(intent);
+                }
                 finish();
             } else {
                 new MaterialAlertDialogBuilder(this)
@@ -142,6 +175,12 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
                         .show();
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

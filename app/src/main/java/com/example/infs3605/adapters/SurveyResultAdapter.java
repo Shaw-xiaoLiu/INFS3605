@@ -30,6 +30,9 @@ public class SurveyResultAdapter extends RecyclerView.Adapter<SurveyResultAdapte
         this.surveyImages = surveyImages;
         this.choices = choices;
         this.surveyItems = surveyItems;
+
+        if (surveyItems.size() > surveyImages.length)
+            throw new IllegalArgumentException(String.format("survey item count (%d) is greater than survey image count (%d).", surveyItems.size(), surveyImages.length));
     }
 
 
@@ -51,7 +54,7 @@ public class SurveyResultAdapter extends RecyclerView.Adapter<SurveyResultAdapte
         holder.binding.rBtnQuestionSecond.setText(choice.second);
 
         if (item.getSurveyType() == SurveyType.MULTIPLE_CHOICE) {
-            if (item.getChoiceAnswer().equals(context.getString(choice.first))){
+            if (item.getChoiceAnswer().equals(context.getString(choice.first))) {
                 holder.binding.rBtnQuestionFirst.setChecked(true);
             } else {
                 holder.binding.rBtnQuestionSecond.setChecked(true);
