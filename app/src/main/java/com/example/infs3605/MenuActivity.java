@@ -10,10 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.infs3605.databinding.ActivityMenuBinding;
-import com.firebase.ui.auth.AuthUI;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
 

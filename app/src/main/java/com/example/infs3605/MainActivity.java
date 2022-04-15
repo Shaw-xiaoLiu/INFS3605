@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.infs3605.constants.FirestoreCollections;
 import com.example.infs3605.databinding.ActivityMainBinding;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.example.infs3605.ui.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,37 +23,17 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.btnLogin.setOnClickListener(v -> launchLoginUI());
-
-        // hide Login button while checking auth
-        binding.btnLogin.setVisibility(View.GONE);
         checkAuth();
     }
-
-    private void launchLoginUI() {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build());
-
-        Intent signInIntent = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build();
-        signInLauncher.launch(signInIntent);
-    }
-
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(), result -> checkAuth()
-    );
 
     private void checkAuth() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             checkWelcomeSurvey(user.getUid());
         } else {
-            binding.btnLogin.setVisibility(View.VISIBLE);
-            binding.progress.setVisibility(View.GONE);
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 
@@ -70,23 +45,16 @@ public class MainActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     binding.progress.setVisibility(View.GONE);
-                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                        launchHomeActivity();
-                    } else {
-                        launchScanActivity();
-                    }
+                    boolean isSurveyAnswered = task.isSuccessful() && !task.getResult().isEmpty();
+                    launchHomeActivity(isSurveyAnswered);
                 });
     }
 
-    private void launchHomeActivity() {
+    private void launchHomeActivity(boolean isSurveyAnswered) {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra(HomeActivity.IS_SURVEY_ANSWERED, isSurveyAnswered);
         startActivity(intent);
         finish();
-    }
-
-    private void launchScanActivity() {
-        Intent intent = new Intent(this, ScanActivity.class);
-        startActivity(intent);
-        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

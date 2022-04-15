@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/navigation_scanner"
+        android:name="com.example.infs3605.ui.scanner.ScannerFragment"
+        android:label="@string/title_scanner"
+        tools:layout="@layout/fragment_scanner" />
+
+    <fragment
         android:id="@+id/navigation_history"
         android:name="com.example.infs3605.ui.history.HistoryFragment"
         android:label="@string/title_history"

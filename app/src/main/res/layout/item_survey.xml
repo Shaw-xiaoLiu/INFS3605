@@ -8,9 +8,9 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:id="@+id/iv"
-        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:theme="@style/RoundedImage"
         app:srcCompat="@drawable/survey_question_3" />
 

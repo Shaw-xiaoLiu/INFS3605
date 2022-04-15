@@ -3,6 +3,7 @@
 
     <!-- Buttons -->
     <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
     <string name="btn_yes">Yes</string>
     <string name="btn_no">No</string>
     <string name="btn_previous">Previous</string>
@@ -10,6 +11,10 @@
     <string name="btn_submit">Submit</string>
     <string name="btn_edit_profile">Edit profile</string>
     <string name="btn_update">Update</string>
+    <string name="btn_go_to_survey">Go to survey</string>
+    <string name="btn_register_here">Register here</string>
+    <string name="btn_learn_more">Learn more</string>
+    <string name="btn_ok">OK</string>
 
     <string name="title_survey_name">COVID-19 Safety Survey</string>
     <string name="title_error">Error</string>
@@ -21,6 +26,7 @@
     <string name="title_age">Age</string>
     <string name="title_name">Name</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_scanner">Scanner</string>
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
     <string name="title_welcome">Welcome</string>
@@ -28,6 +34,8 @@
 
     <string name="menu_logout">Logout</string>
     <string name="menu_edit_result">Edit result</string>
+    <string name="menu_flash_on">Flash ON</string>
+    <string name="menu_flash_off">Flash OFF</string>
 
     <string name="survey_question_1">1. Do you have any of the following symptoms now or within the last 14 days: Cough, smell/taste impairment, fever, breathing difficulties, body aches, headaches, fatigue, sore throat, diarrhoea, and / or runny nose (even if your symptoms are mild)?</string>
     <string name="survey_question_2">2. Have you been in contact with anyone who is suspected to have or/has been diagnosed with Covid-19 within the last 14 days?</string>
@@ -35,5 +43,20 @@
 
     <string name="msg_fill_all_fields">Please fill out all required fields.</string>
     <string name="msg_updating_info">Updating info …</string>
+    <string name="msg_no_account">No account yet?</string>
+
+    <string name="err_blank">%s should not be blank.</string>
+    <string name="err_less_pw_limit">Password must be at least 6 characters.</string>
+    <string name="err_no_browsers">No browsers found.</string>
+
+    <string name="warn_survey_denied_all">User denied all survey questions.</string>
+    <string name="warn_survey_denied_2">User denied first 2 survey questions.</string>
+
+    <string name="url_survey_denied_all">https://www.health.nsw.gov.au</string>
+    <string name="url_survey_denied_2">https://www.health.nsw.gov.au</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
 
 </resources>

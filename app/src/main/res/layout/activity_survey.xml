@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
     tools:context=".SurveyActivity">
 
@@ -20,6 +21,38 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/warningLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/survey_warning_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="4dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvWarning"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            tools:text="@string/warn_survey_denied_all" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLearnMore"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_learn_more"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

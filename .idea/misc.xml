@@ -3,12 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/ic_baseline_flashlight_off_24.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/ic_baseline_flashlight_on_24.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/login_background.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/survey_warning_background.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/drawable/tick3.xml" value="0.1675" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_home.xml" value="0.12635869565217392" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_register.xml" value="0.264" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_scan.xml" value="0.12635869565217392" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_submitted.xml" value="0.264" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_survey.xml" value="0.2" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_test.xml" value="0.12635869565217392" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/activity_welcome.xml" value="0.264" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.152" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/fragment_history.xml" value="0.12635869565217392" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/fragment_scanner.xml" value="0.2" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/layout/item_survey.xml" value="0.12635869565217392" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21666666666666667" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/menu/history_menu.xml" value="0.21666666666666667" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/menu/home_menu.xml" value="0.21666666666666667" />
+        <entry key="..\:/Aprojects/Guide/INFS3605/app/src/main/res/menu/scanner_menu.xml" value="0.21666666666666667" />
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/activity_scan.xml" value="0.19947916666666668" />
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.11041666666666666" />
-        <entry key="..\:/INFS3605_new/app/src/main/res/layout/activity_submited.xml" value="0.2" />
-        <entry key="..\:/INFS3605_new/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
-        <entry key="..\:/INFS3605_new/app/src/main/res/layout/item_survey.xml" value="0.18125" />
         <entry key="..\:/INFS3605_withscan/app/src/main/res/layout/activity_welcome.xml" value="0.128" />
         <entry key="..\:/infs3605_project/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/infs3605_project/app/src/main/res/layout/activity_survey.xml" value="0.264" />

@@ -1,10 +1,15 @@
 package com.example.infs3605;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,7 +80,7 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
 
             SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), userAnswers, this);
             binding.recycler.setAdapter(adapter);
-
+            checkAnswers();
         } else {
             SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), null, this);
             binding.recycler.setAdapter(adapter);
@@ -126,6 +131,33 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
         binding.btnNext.setIconResource(R.drawable.ic_baseline_navigate_next_24);
         layoutManager.setScrollEnabled(true);
         binding.recycler.smoothScrollToPosition(currentQuestionIndex);
+    }
+
+    private boolean hasDeniedAnswer(int position) {
+        return answers.containsKey(position) && TextUtils.equals(answers.get(position), getString(R.string.btn_no));
+    }
+
+    private void checkAnswers() {
+        if (hasDeniedAnswer(0) && hasDeniedAnswer(1) && hasDeniedAnswer(2)) {
+            binding.warningLayout.setVisibility(View.VISIBLE);
+            binding.tvWarning.setText(R.string.warn_survey_denied_all);
+            binding.btnLearnMore.setOnClickListener(v -> launchUrl(R.string.url_survey_denied_all));
+        } else if (hasDeniedAnswer(0) && hasDeniedAnswer(1)) {
+            binding.warningLayout.setVisibility(View.VISIBLE);
+            binding.tvWarning.setText(R.string.warn_survey_denied_2);
+            binding.btnLearnMore.setOnClickListener(v -> launchUrl(R.string.url_survey_denied_2));
+        } else {
+            binding.warningLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private void launchUrl(@StringRes int url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(url)));
+            startActivity(intent);
+        } catch (ActivityNotFoundException ignored) {
+            Snackbar.make(binding.getRoot(), R.string.err_no_browsers, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     private void prepareForm() {
@@ -186,6 +218,10 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
     @Override
     public void onAnswerChecked(int position, String answer) {
         answers.put(position, answer);
+
+        if (answers.containsKey(0) && answers.containsKey(1)) {
+            checkAnswers();
+        }
     }
 }
 

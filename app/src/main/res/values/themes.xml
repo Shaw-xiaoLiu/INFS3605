@@ -17,4 +17,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8%</item>
     </style>
+
+    <style name="Theme.INFS3605.NoActionBar">
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
