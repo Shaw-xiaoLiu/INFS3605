@@ -2,6 +2,7 @@ package com.example.infs3605.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnRegister.setOnClickListener(v -> checkRegisterDetails());
+        binding.tvTitle.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
 
     }
 
@@ -88,5 +90,11 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

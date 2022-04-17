@@ -12,37 +12,56 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24"
-            app:tint="@color/purple_500" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvWelcomeUser"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/title_welcome_user"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/teal_200"
+            app:cardElevation="5dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Dashboard">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnEditProfile"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="@string/btn_edit_profile"
-            android:textAllCaps="false" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:adjustViewBounds="true"
+                    android:theme="@style/CircleImage"
+                    app:srcCompat="@drawable/ic_avatar" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvWelcomeUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/title_welcome_user"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/btn_edit_profile"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            app:cardCornerRadius="15dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="5dp">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -63,6 +82,10 @@
                         tools:text="a@b.com" />
                 </TableRow>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp" />
+
                 <TableRow android:layout_marginTop="15dp">
 
                     <TextView
@@ -75,6 +98,10 @@
                         android:gravity="end"
                         tools:text="0123456789" />
                 </TableRow>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp" />
 
                 <TableRow android:layout_marginTop="15dp">
 
@@ -89,6 +116,10 @@
                         tools:text="00/11 Main Road" />
                 </TableRow>
 
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp" />
+
                 <TableRow android:layout_marginTop="15dp">
 
                     <TextView
@@ -101,6 +132,10 @@
                         android:gravity="end"
                         tools:text="Male" />
                 </TableRow>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp" />
 
                 <TableRow android:layout_marginTop="15dp">
 
@@ -121,17 +156,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:textStyle="bold"
             android:text="@string/title_settings"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             android:textColor="@color/purple_500" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start|center_vertical"
             android:padding="20dp"
-            android:id="@+id/btnLogout"
             android:text="@string/menu_logout"
             android:textAllCaps="false"
             android:textColor="@color/black"

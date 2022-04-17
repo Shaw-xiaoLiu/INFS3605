@@ -2,6 +2,7 @@ package com.example.infs3605.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnLogin.setOnClickListener(v -> checkLoginDetails());
-        binding.btnRegister.setOnClickListener(v -> startActivity(new Intent(this, RegisterActivity.class)));
+        binding.btnRegister.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterActivity.class));
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        binding.tvTitle.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
 
     }
 

@@ -4,29 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    android:gravity="center"
     android:orientation="vertical"
-    android:padding="30dp"
     tools:context=".ui.RegisterActivity">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_register"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:gravity="center">
+
+        <com.haytham.coder.curveview.CurveView
+            android:id="@+id/curvedView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:endColor="@color/teal_200"
+            app:endColorX="0.5"
+            app:endColorY="25"
+            app:firstControlPointExtraY="-50dp"
+            app:firstControlPointX="0.5"
+            app:secondControlPointExtraY="90dp"
+            app:secondControlPointX="0.4"
+            app:startColor="@color/purple_700"
+            app:startColorX="0.5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/allerta_stencil"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="@string/btn_register"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textColor="@color/teal_200"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         android:hint="@string/hint_name"
-        app:boxBackgroundColor="@color/white"
-        app:boxStrokeColor="@color/blue"
-        app:hintTextColor="@color/blue">
+        app:boxBackgroundColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtName"
@@ -39,11 +65,11 @@
         android:id="@+id/edtEmailLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:hint="@string/hint_email"
-        app:boxBackgroundColor="@color/white"
-        app:boxStrokeColor="@color/blue"
-        app:hintTextColor="@color/blue">
+        app:boxBackgroundColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtEmail"
@@ -56,12 +82,12 @@
         android:id="@+id/edtPasswordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:hint="@string/hint_password"
         app:boxBackgroundColor="@color/white"
-        app:boxStrokeColor="@color/blue"
-        app:endIconMode="password_toggle"
-        app:hintTextColor="@color/blue">
+        app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtPassword"
@@ -70,13 +96,14 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:text="@string/btn_register"
         android:textAllCaps="false"
-        app:backgroundTint="#12AC00" />
+        app:icon="@drawable/ic_baseline_login_24" />
 
 </LinearLayout>
