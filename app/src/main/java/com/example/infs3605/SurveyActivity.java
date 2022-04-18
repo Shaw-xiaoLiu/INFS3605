@@ -11,6 +11,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.infs3605.adapters.SurveyAdapter;
@@ -29,6 +30,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -61,9 +64,43 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
         layoutManager = new SurveyLayoutManager(this, SurveyLayoutManager.HORIZONTAL, false);
         binding.recycler.setLayoutManager(layoutManager);
 
+        String surveyAttention = readTextFromAssets("survey_attention.html");
+        new MaterialAlertDialogBuilder(this)
+                .setCancelable(false)
+                .setMessage(HtmlCompat.fromHtml(surveyAttention, HtmlCompat.FROM_HTML_MODE_COMPACT))
+                .setPositiveButton(R.string.btn_i_acknowledge, (dialog, which) -> setupSurveys())
+                .show();
+
+        binding.btnNext.setOnClickListener(v -> performNextAction());
+        binding.btnPrevious.setOnClickListener(v -> performPreviousAction());
+
+        binding.recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                layoutManager.setScrollEnabled(false);
+            }
+        });
+    }
+
+    private String readTextFromAssets(@SuppressWarnings("SameParameterValue") String fileName) {
+        try {
+            InputStream inputStream = getAssets().open(fileName);
+            StringBuilder sb = new StringBuilder();
+            for (int ch; (ch = inputStream.read()) != -1; ) {
+                sb.append((char) ch);
+            }
+            return sb.toString();
+        } catch (IOException ignored) {
+            return "";
+        }
+    }
+
+    private void setupSurveys() {
+        binding.actionLayout.setVisibility(View.VISIBLE);
+
         // check whether user create or update survey
         Intent intent = getIntent();
-
         if (intent != null && intent.hasExtra(EXTRA_SURVEY_ITEMS)) {
             isUpdateForm = true;
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -85,17 +122,6 @@ public class SurveyActivity extends AppCompatActivity implements SurveyAdapter.O
             SurveyAdapter adapter = new SurveyAdapter(this, Surveys.surveyImages, Surveys.surveyQuestions, Surveys.getChoices(), null, this);
             binding.recycler.setAdapter(adapter);
         }
-
-        binding.btnNext.setOnClickListener(v -> performNextAction());
-        binding.btnPrevious.setOnClickListener(v -> performPreviousAction());
-
-        binding.recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                layoutManager.setScrollEnabled(false);
-            }
-        });
     }
 
     private void performNextAction() {
