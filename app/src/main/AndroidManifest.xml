@@ -49,6 +49,7 @@
             android:label="@string/btn_edit_profile" />
         <activity
             android:name=".SurveyActivity"
+            android:label="@string/title_survey_name"
             android:exported="false" />
         <activity
             android:name=".ScanActivity"
