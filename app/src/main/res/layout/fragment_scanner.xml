@@ -17,8 +17,8 @@
         android:id="@+id/welcomeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_welcome"
         android:gravity="center"
-        android:background="@color/white"
         android:orientation="vertical"
         android:padding="20dp"
         android:visibility="gone"
@@ -27,9 +27,9 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_welcome"
+            android:text="Welcome to "
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
-            android:textColor="@color/teal_700"
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:fontFamily="@font/bad_script" />
 
@@ -39,15 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="34sp"
             tools:text="@string/app_name" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLaunchSurvey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
             android:layout_marginTop="20dp"
+            android:enabled="false"
             android:text="@string/btn_go_to_survey"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
     </LinearLayout>
 </RelativeLayout>

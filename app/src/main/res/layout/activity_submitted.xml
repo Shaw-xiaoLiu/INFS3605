@@ -8,15 +8,15 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="132dp"
+        android:layout_height="147dp"
         android:layout_marginStart="57dp"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="90dp"
         android:layout_marginEnd="57dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/submitted"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/tick3" />
@@ -29,11 +29,14 @@
         android:layout_marginTop="33dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="41dp"
+        android:fontFamily="@font/bad_script"
         android:text="Submitted!"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="60sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -46,10 +49,11 @@
         android:layout_marginEnd="37dp"
         android:layout_marginBottom="44dp"
         android:text="Your cooperation matters for NSW public health"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submitted" />
 
@@ -62,11 +66,11 @@
         android:layout_marginTop="43dp"
         android:layout_marginEnd="148dp"
         android:layout_marginBottom="149dp"
-        android:text="See result"
+        android:text="Go back to main screen"
         android:textColor="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

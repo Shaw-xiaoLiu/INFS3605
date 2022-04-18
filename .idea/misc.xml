@@ -31,6 +31,14 @@
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/activity_scan.xml" value="0.19947916666666668" />
         <entry key="..\:/INFS3605_1/app/src/main/res/layout/custom_barcode_scanner.xml" value="0.11041666666666666" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/activity_login.xml" value="0.10925925925925926" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/activity_menu.xml" value="0.10925925925925926" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/activity_submitted.xml" value="0.225" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/activity_survey.xml" value="0.225" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/fragment_dashboard.xml" value="0.225" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/fragment_scanner.xml" value="0.225" />
+        <entry key="..\:/INFS3605_done/app/src/main/res/layout/item_survey.xml" value="0.225" />
         <entry key="..\:/INFS3605_new2/app/src/main/res/layout/activity_dashboard1.xml" value="0.2" />
         <entry key="..\:/INFS3605_new2/app/src/main/res/layout/activity_dashboard2.xml" value="0.19739583333333333" />
         <entry key="..\:/INFS3605_new2/app/src/main/res/layout/activity_survey.xml" value="0.1953125" />
