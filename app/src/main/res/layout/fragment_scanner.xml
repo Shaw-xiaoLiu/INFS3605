@@ -27,7 +27,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to "
+            android:text="@string/title_welcome_to"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -50,6 +50,6 @@
             android:enabled="false"
             android:text="@string/btn_go_to_survey"
             android:textAllCaps="false"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </RelativeLayout>

@@ -97,6 +97,7 @@ public class ProfileFragment extends Fragment {
         binding.tvAddress.setText(String.format("%s", detail.getAddress()));
         binding.tvGender.setText(String.format("%s", detail.getGender().name()));
         binding.tvAge.setText(String.format(Locale.ENGLISH, "%d", detail.getAge()));
+        binding.tvCitizenship.setText(String.format(Locale.ENGLISH, "%s", detail.getCitizenshipNumber()));
     }
 
     @Override

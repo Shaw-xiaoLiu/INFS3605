@@ -66,6 +66,9 @@ public class EditProfileActivity extends AppCompatActivity {
         if (userDetail.getAge() != 0) {
             binding.edtAge.setText(String.format(Locale.ENGLISH, "%d", userDetail.getAge()));
         }
+        if (userDetail.getCitizenshipNumber() != null) {
+            binding.edtCitizenship.setText(userDetail.getCitizenshipNumber());
+        }
 
         Gender gender = userDetail.getGender() == null ? Gender.Unknown : userDetail.getGender();
         ArrayAdapter<Gender> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Gender.values());
@@ -81,8 +84,9 @@ public class EditProfileActivity extends AppCompatActivity {
         String ageStr = binding.edtAge.getEditableText().toString().trim();
         int age = ageStr.isEmpty() ? 0 : Integer.parseInt(ageStr);
         Gender gender = Gender.valueOf(binding.tvGender.getText().toString());
+        String citizenshipNumber = binding.edtCitizenship.getEditableText().toString().trim();
 
-        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || age <= 0) {
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || age <= 0 || citizenshipNumber.isEmpty()) {
             Snackbar.make(binding.getRoot(), R.string.msg_fill_all_fields, Snackbar.LENGTH_SHORT).show();
         } else {
             UserDetail detail = new UserDetail();
@@ -92,6 +96,7 @@ public class EditProfileActivity extends AppCompatActivity {
             detail.setAddress(address);
             detail.setAge(age);
             detail.setGender(gender);
+            detail.setCitizenshipNumber(citizenshipNumber);
             updateUserDetail(detail);
         }
     }

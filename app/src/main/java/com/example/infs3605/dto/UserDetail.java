@@ -10,6 +10,7 @@ public class UserDetail implements Parcelable {
     private String address;
     private Gender gender;
     private int age;
+    private String citizenshipNumber;
 
     public UserDetail() {
     }
@@ -21,6 +22,7 @@ public class UserDetail implements Parcelable {
         address = in.readString();
         gender = Gender.valueOf(in.readString());
         age = in.readInt();
+        citizenshipNumber = in.readString();
     }
 
     public static final Creator<UserDetail> CREATOR = new Creator<UserDetail>() {
@@ -48,6 +50,7 @@ public class UserDetail implements Parcelable {
         dest.writeString(address);
         dest.writeString(gender.name());
         dest.writeInt(age);
+        dest.writeString(citizenshipNumber);
     }
 
     public String getName() {
@@ -96,6 +99,14 @@ public class UserDetail implements Parcelable {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getCitizenshipNumber() {
+        return citizenshipNumber;
+    }
+
+    public void setCitizenshipNumber(String citizenshipNumber) {
+        this.citizenshipNumber = citizenshipNumber;
     }
 
     public static Creator<UserDetail> getCREATOR() {

@@ -15,6 +15,7 @@
     <string name="btn_register_here">Register here</string>
     <string name="btn_learn_more">Learn more</string>
     <string name="btn_ok">OK</string>
+    <string name="btn_i_acknowledge">I acknowledge</string>
 
     <string name="title_survey_name">COVID-19 Safety Survey</string>
     <string name="title_error">Error</string>
@@ -30,7 +31,9 @@
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
     <string name="title_welcome">Welcome</string>
+    <string name="title_welcome_to">Welcome to</string>
     <string name="title_settings">Settings</string>
+    <string name="title_citizenship_number">Citizenship number / passport number</string>
 
     <string name="menu_logout">Logout</string>
     <string name="menu_edit_result">Edit result</string>
@@ -58,6 +61,5 @@
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="btn_i_acknowledge">I acknowledge</string>
 
 </resources>
