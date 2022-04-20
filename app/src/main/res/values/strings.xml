@@ -40,8 +40,8 @@
     <string name="menu_flash_on">Flash ON</string>
     <string name="menu_flash_off">Flash OFF</string>
 
-    <string name="survey_question_1">1. Do you have any of the following symptoms now or within the last 14 days: Cough, smell/taste impairment, fever, breathing difficulties, body aches, headaches, fatigue, sore throat, diarrhoea, and / or runny nose (even if your symptoms are mild)?</string>
-    <string name="survey_question_2">2. Have you been in contact with anyone who is suspected to have or/has been diagnosed with Covid-19 within the last 14 days?</string>
+    <string name="survey_question_1">1. Have you been diagnosed with Covid-19 or has any of the following symptoms now or within the last 14 days: Cough, smell/taste impairment, fever, breathing difficulties, body aches, headaches, fatigue, sore throat, diarrhoea, and / or runny nose (even if your symptoms are mild)?</string>
+    <string name="survey_question_2">2. Have you been in self-isolation or in contact with anyone who is suspected to have or/has been diagnosed with Covid-19 within the last 14 days?</string>
     <string name="survey_question_3">3. Have you been fully vaccinated?</string>
 
     <string name="msg_fill_all_fields">Please fill out all required fields.</string>
