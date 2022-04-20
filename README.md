@@ -5,6 +5,8 @@ Group project
 - Android Studio
 - Firebase (Authentication & Firestore)
 - Firebase console: https://console.firebase.google.com/project/infs3605-6f5d4/overview
+- username: daveitonda@gmail.com
+- password: Iancy1234
 
 ### Build instruction
 1. Extract the project zip file and open it in Android Studio.
